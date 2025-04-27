@@ -47,20 +47,23 @@ public class DataInitializer implements CommandLineRunner {
         if (apparelRepository.count() == 0) {
             Apparel tshirt = new Apparel();
             tshirt.setName("T-Shirt");
-            tshirt.setDescription("Cotton T-Shirt");
-            tshirt.setPrice(20.0);
+            tshirt.setWarehouseCost(6.0);
+            tshirt.setInventoryCost(10.0);
+            tshirt.setSellingPrice(20.0);
             apparelRepository.save(tshirt);
             
             Apparel hoodie = new Apparel();
             hoodie.setName("Hoodie");
-            hoodie.setDescription("Warm Hoodie");
-            hoodie.setPrice(40.0);
+            hoodie.setWarehouseCost(8.0);
+            hoodie.setInventoryCost(12.0);
+            hoodie.setSellingPrice(40.0);
             apparelRepository.save(hoodie);
             
             Apparel sweater = new Apparel();
             sweater.setName("Sweater");
-            sweater.setDescription("Wool Sweater");
-            sweater.setPrice(50.0);
+            sweater.setWarehouseCost(9.0);
+            sweater.setInventoryCost(14.0);
+            sweater.setSellingPrice(50.0);
             apparelRepository.save(sweater);
             
             System.out.println("Apparel items created");
@@ -68,19 +71,16 @@ public class DataInitializer implements CommandLineRunner {
             Warehouse warehouseTshirt = new Warehouse();
             warehouseTshirt.setApparel(tshirt);
             warehouseTshirt.setQuantity(100);
-            warehouseTshirt.setCost(6.0);
             warehouseRepository.save(warehouseTshirt);
             
             Warehouse warehouseHoodie = new Warehouse();
             warehouseHoodie.setApparel(hoodie);
             warehouseHoodie.setQuantity(50);
-            warehouseHoodie.setCost(8.0);
             warehouseRepository.save(warehouseHoodie);
             
             Warehouse warehouseSweater = new Warehouse();
             warehouseSweater.setApparel(sweater);
             warehouseSweater.setQuantity(30);
-            warehouseSweater.setCost(9.0);
             warehouseRepository.save(warehouseSweater);
             
             System.out.println("Warehouse items created");
@@ -88,19 +88,16 @@ public class DataInitializer implements CommandLineRunner {
             Inventory inventoryTshirt = new Inventory();
             inventoryTshirt.setApparel(tshirt);
             inventoryTshirt.setQuantity(20);
-            inventoryTshirt.setCost(10.0);
             inventoryRepository.save(inventoryTshirt);
             
             Inventory inventoryHoodie = new Inventory();
             inventoryHoodie.setApparel(hoodie);
             inventoryHoodie.setQuantity(10);
-            inventoryHoodie.setCost(12.0);
             inventoryRepository.save(inventoryHoodie);
             
             Inventory inventorySweater = new Inventory();
             inventorySweater.setApparel(sweater);
             inventorySweater.setQuantity(5);
-            inventorySweater.setCost(14.0);
             inventoryRepository.save(inventorySweater);
             
             System.out.println("Inventory items created");
@@ -109,16 +106,16 @@ public class DataInitializer implements CommandLineRunner {
             purchaseTransaction.setApparel(tshirt);
             purchaseTransaction.setQuantity(2);
             purchaseTransaction.setType(Transaction.TransactionType.PURCHASE);
-            purchaseTransaction.setTransactionDate(LocalDateTime.now());
-            purchaseTransaction.setTotalAmount(40.0);
+            purchaseTransaction.setTimestamp(LocalDateTime.now());
+            purchaseTransaction.setAmount(40.0);
             transactionRepository.save(purchaseTransaction);
             
             Transaction restockTransaction = new Transaction();
             restockTransaction.setApparel(hoodie);
             restockTransaction.setQuantity(5);
             restockTransaction.setType(Transaction.TransactionType.RESTOCK);
-            restockTransaction.setTransactionDate(LocalDateTime.now());
-            restockTransaction.setTotalAmount(60.0);
+            restockTransaction.setTimestamp(LocalDateTime.now());
+            restockTransaction.setAmount(60.0);
             transactionRepository.save(restockTransaction);
             
             System.out.println("Sample transactions created");
