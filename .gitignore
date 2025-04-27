@@ -1,0 +1,17 @@
+# Maven build artifacts
+target/
+
+# IDE files
+.factorypath
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
